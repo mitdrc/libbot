@@ -10,7 +10,8 @@ find_package(PkgConfig REQUIRED)
 
 # Check whether GTK is available, if not skip bot_vis
 pkg_check_modules(GTK "gtk+-2.0")
-if (NOT GTK_FOUND)
+find_package(GLUT)
+if (NOT GTK_FOUND OR NOT GLUT_FOUND)
 	message(WARNING "GTK not found, skipping bot2-vis")
 	return()
 endif()
