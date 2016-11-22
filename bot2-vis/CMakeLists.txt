@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6.0)
+cmake_minimum_required(VERSION 2.6.2)
 
 set(POD_NAME bot2-vis)
 
@@ -7,6 +7,15 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 include(cmake/pods.cmake)
 
 find_package(PkgConfig REQUIRED)
+
+# Check whether GTK is available, if not skip bot_vis
+pkg_check_modules(GTK "gtk+-2.0")
+find_package(GLUT)
+if (NOT GTK_FOUND OR NOT GLUT_FOUND)
+	message(WARNING "GTK not found, skipping bot2-vis")
+	return()
+endif()
+
 
 set(GLUT_LIBRARIES -lglut)
 
