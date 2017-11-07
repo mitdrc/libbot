@@ -6,7 +6,7 @@ add_executable(bot-lcmgl-viewer
     udp_util.c
     view_menu.c
     )
-target_link_libraries(bot-lcmgl-viewer bot2-lcmgl-renderer)
+target_link_libraries(bot-lcmgl-viewer bot2-lcmgl-renderer X11)
 pods_use_pkg_config_packages(bot-lcmgl-viewer bot2-vis) 
 
 

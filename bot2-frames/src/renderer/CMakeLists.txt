@@ -33,7 +33,7 @@ pods_install_pkg_config_file(bot2-frames-renderers
     
 #build the test-viewer
 add_executable(test-viewer test_viewer.c)
-target_link_libraries(test-viewer ${GLUT_LIBRARIES} bot2-frames-renderers)
+target_link_libraries(test-viewer ${GLUT_LIBRARIES} bot2-frames-renderers X11)
 pods_use_pkg_config_packages(test-viewer 
                                          bot2-vis 
                                          bot2-lcmgl-renderer)
