@@ -14,7 +14,10 @@
 #include "../param_client/misc_utils.h"
 #include "../param_client/param_internal.h"
 
-#include <lcmtypes/bot2_param.h>
+#include <lcmtypes/bot_param_request_t.h>
+#include <lcmtypes/bot_param_set_t.h>
+#include <lcmtypes/bot_param_update_t.h>
+#include <lcmtypes/bot_param_entry_t.h>
 
 typedef struct {
   BotParam * params;
@@ -97,7 +100,7 @@ void on_param_set(const lcm_recv_buf_t *rbuf, const char * channel, const bot_pa
           cur_val++;
         }
       }
-      success = (bot_param_set_str_array(self->params, msg->entries[i].key, vals, len) == len);
+      success = (bot_param_set_str_array(self->params, msg->entries[i].key, (const char **)&vals, len) == len); 
     }
     else {
       success = (bot_param_set_str(self->params, msg->entries[i].key, msg->entries[i].value) == 1);
