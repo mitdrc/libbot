@@ -8,4 +8,5 @@ set(testers
 foreach(tester ${testers})
     add_executable(${tester} "${tester}.c")
     pods_use_pkg_config_packages(${tester} bot2-vis)  # need headers as well as bot2-vis target
+    target_link_libraries(${tester} X11)
 endforeach()
