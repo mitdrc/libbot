@@ -100,12 +100,6 @@ if (WITH_BOT_VIS)
     CMAKE_CACHE_ARGS ${default_cmake_args} -DUSE_BOT_VIS:BOOL=${WITH_BOT_VIS}
     DEPENDS bot2-vis)
 
-  ExternalProject_Add(bot2-frames
-    SOURCE_DIR ${PROJECT_SOURCE_DIR}/bot2-frames
-    BINARY_DIR ${PROJECT_BINARY_DIR}/bot2-frames
-    CMAKE_CACHE_ARGS ${default_cmake_args}
-    DEPENDS bot2-core bot2-param bot2-vis bot2-lcmgl)
-
 else()
 
   message(STATUS "Configuring without bot2-vis, modules requiring gtk+x11 will not be built.")
@@ -117,4 +111,11 @@ else()
 
 endif()
 
+ExternalProject_Add(bot2-frames
+  SOURCE_DIR ${PROJECT_SOURCE_DIR}/bot2-frames
+  BINARY_DIR ${PROJECT_BINARY_DIR}/bot2-frames
+  CMAKE_CACHE_ARGS ${default_cmake_args} -DUSE_BOT_VIS:BOOL=${WITH_BOT_VIS}
+  DEPENDS bot2-core bot2-param bot2-lcmgl ${bot2_vis_depends})
+
+# dummy install step
 install(CODE "message(\"Nothing to do for install.\")")
