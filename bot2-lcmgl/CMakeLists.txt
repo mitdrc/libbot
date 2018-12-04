@@ -15,7 +15,7 @@ option(USE_BOT_VIS "Build bot2-lcmgl with bot2-vis dependency." ON)
 add_definitions(-std=gnu99)
 
 add_subdirectory(src/bot_lcmgl_client)
-add_subdirectory(src/bot_lcmgl_render)
+#add_subdirectory(src/bot_lcmgl_render)
 
 if(USE_BOT_VIS)
   add_subdirectory(src/lcmgl-viewer)
